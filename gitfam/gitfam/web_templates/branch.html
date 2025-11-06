@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}{{ branch.display_name }} - GitFam{% endblock %}
+
+{% block content %}
+<a href="index.html" class="back-link">
+    <span>←</span> Back to Home
+</a>
+
+<div class="card">
+    <h1 style="color: #667eea; margin-bottom: 1rem;">{{ branch.display_name }}</h1>
+    <p style="color: #666; font-size: 1.1rem;">
+        {{ branch.description or 'Family branch' }}
+    </p>
+</div>
+
+<h2 style="color: #667eea; margin-bottom: 1.5rem;">
+    Family Members ({{ branch.members|length }})
+</h2>
+
+{% if branch.members %}
+<div class="member-grid">
+    {% for member in branch.members %}
+    <a href="members/{{ member.slug }}.html" class="member-card">
+        <div class="member-name">{{ member.name }}</div>
+        <div class="member-info">
+            {% if member.birth_date %}
+            <div>Born: {{ member.birth_date }}</div>
+            {% endif %}
+            {% if member.birth_place %}
+            <div>{{ member.birth_place }}</div>
+            {% endif %}
+        </div>
+        <div style="margin-top: 0.75rem;">
+            {% if member.interviews %}
+            <span class="badge badge-interview">{{ member.interviews|length }} Interview{{ 's' if member.interviews|length != 1 else '' }}</span>
+            {% endif %}
+            {% if member.has_photos %}
+            <span class="badge badge-photos">Photos</span>
+            {% endif %}
+            {% if member.has_videos %}
+            <span class="badge badge-videos">Videos</span>
+            {% endif %}
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card" style="text-align: center; padding: 3rem;">
+    <h3 style="color: #999; margin-bottom: 1rem;">No members yet</h3>
+    <p style="color: #999;">
+        Add family members by running:<br>
+        <code style="background: #f5f5f5; padding: 0.5rem 1rem; border-radius: 4px; margin-top: 1rem; display: inline-block;">
+            gitfam add-family-member --branch {{ branch.name }}
+        </code>
+    </p>
+</div>
+{% endif %}
+{% endblock %}

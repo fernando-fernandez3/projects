@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% set is_member = true %}
+
+{% block title %}{{ member.name }} - GitFam{% endblock %}
+
+{% block content %}
+<a href="../{{ member.branch }}.html" class="back-link">
+    <span>←</span> Back to {{ member.branch|replace('-', ' ')|title }}
+</a>
+
+<div class="card">
+    <h1 style="color: #667eea; margin-bottom: 1rem;">{{ member.name }}</h1>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px;">
+        {% if member.birth_date %}
+        <div>
+            <div style="color: #999; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem;">Born</div>
+            <div style="font-weight: 500;">{{ member.birth_date }}</div>
+        </div>
+        {% endif %}
+        
+        {% if member.birth_place %}
+        <div>
+            <div style="color: #999; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem;">Birth Place</div>
+            <div style="font-weight: 500;">{{ member.birth_place }}</div>
+        </div>
+        {% endif %}
+        
+        <div>
+            <div style="color: #999; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem;">Media</div>
+            <div>
+                {% if member.has_photos %}
+                <span class="badge badge-photos">Photos</span>
+                {% endif %}
+                {% if member.has_videos %}
+                <span class="badge badge-videos">Videos</span>
+                {% endif %}
+                {% if not member.has_photos and not member.has_videos %}
+                <span style="color: #999;">No media yet</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    {% if member.interviews %}
+    <div style="background: #e8f5e9; border-left: 4px solid #388e3c; padding: 1.5rem; border-radius: 4px; margin-bottom: 2rem;">
+        <h3 style="color: #2e7d32; margin-bottom: 0.75rem;">🎥 Interviews</h3>
+        <div style="color: #1b5e20;">
+            <strong>{{ member.interviews|length }}</strong> interview{{ 's' if member.interviews|length != 1 else '' }} recorded
+        </div>
+        <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #2e7d32;">
+            {% for interview in member.interviews %}
+            <div style="margin-top: 0.5rem;">
+                📅 {{ interview.date }} 
+                {% if interview.topics %}
+                - Topics: {{ interview.topics|join(', ') }}
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    
+    {% if member.relationships %}
+    <div style="background: #f3e5f5; border-left: 4px solid #7b1fa2; padding: 1.5rem; border-radius: 4px; margin-bottom: 2rem;">
+        <h3 style="color: #6a1b9a; margin-bottom: 0.75rem;">👨‍👩‍👧‍👦 Family Relationships</h3>
+        <ul style="list-style: none; padding: 0;">
+            {% for rel in member.relationships %}
+            <li style="margin-bottom: 0.5rem; color: #4a148c;">
+                <strong>{{ rel.type|replace('_', ' ')|title }}:</strong> {{ rel.person }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+<div class="card">
+    <div class="profile-content">
+        {{ member.profile_content|markdown|safe }}
+    </div>
+</div>
+
+<div class="card" style="text-align: center; background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border: 2px solid #667eea30;">
+    <p style="color: #667eea; font-style: italic;">
+        "The stories we preserve today become the treasured memories of tomorrow."
+    </p>
+</div>
+{% endblock %}

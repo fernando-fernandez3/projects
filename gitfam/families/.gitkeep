@@ -1,0 +1,29 @@
+# Family Branches
+
+This directory will contain separate folders for each family branch or surname line.
+
+Each family should follow this structure:
+```
+families/
+└── surname-branch/
+    ├── README.md
+    └── members/
+        └── firstname-lastname-birthyear/
+            ├── profile.md
+            ├── interviews/
+            │   ├── interview-YYYY-MM-DD.md
+            │   └── videos/
+            ├── photos/
+            └── documents/
+```
+
+Example:
+```
+families/
+└── smith-california/
+    └── members/
+        └── john-smith-1945/
+            ├── profile.md
+            ├── interviews/
+            └── photos/
+```

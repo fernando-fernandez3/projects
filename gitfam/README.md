@@ -50,111 +50,33 @@ GitFam is designed to be:
 
 ## Getting Started
 
-### Quick Start (Easiest)
+Refer to the [CLI Guide](docs/CLI_GUIDE.md) for detailed instructions on setting up your GitFam project, adding family members, and generating a static website to showcase your family's history.
 
-```bash
-# 1. Install uv (Python package manager)
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# 2. Clone this repository
-git clone https://github.com/YOUR-USERNAME/gitfam.git
-cd gitfam
-
-# 3. Install GitFam CLI
-uv sync
-
-# 4. Run the interactive setup wizard
-uv run gitfam quick-start
-```
-
-That's it! The wizard will guide you through:
-- Creating your first family branch
-- Adding your first family member
-- Setting up the project structure
-
-### What You Get
-
-**Interactive CLI** - No need to manually create files and folders
-```bash
-uv run gitfam create-branch       # Create a new family branch
-uv run gitfam add-family-member   # Add members interactively
-uv run gitfam generate-website    # Build a beautiful website
-```
-
-**Beautiful Web Viewer** - View your family tree in a polished, simple interface
-
-![Web Viewer Preview](docs/images/preview.png)
-
-**Comprehensive Templates** - Pre-built structures for profiles, interviews, and documentation
-
-📖 **[Read the full CLI Guide →](gitfam/docs/CLI_GUIDE.md)**
-
-📖 **[Read the Getting Started guide →](gitfam/docs/GETTING_STARTED.md)**
-
----
 
 ## Project Structure
 
 ```
 gitfam/
-├── families/                # Your family branches
-│   └── [surname-location]/
-│       ├── README.md
-│       └── members/
-│           └── [name-year]/
-│               ├── profile.md
-│               ├── interviews/
-│               ├── photos/
-│               └── documents/
-├── templates/               # Templates for profiles & interviews
-├── tools/                   # Helper bash scripts
-├── docs/                    # Documentation
-├── gitfam/                  # Python CLI tool
-│   ├── cli.py              # Main CLI interface
-│   ├── commands/           # CLI commands
-│   └── web_templates/      # Web viewer templates
-└── pyproject.toml          # Python project config
+├── families/           # Family branches
+├── templates/          # Profile and interview templates
+├── tools/              # Helper scripts
+└── docs/               # Documentation
 ```
-
-## Features
-
-### 🚀 Interactive CLI Tool
-- **Easy setup wizard** - Get started in minutes
-- **Smart prompts** - Guides you through adding members
-- **Relationship tracking** - Build connections between family members
-- **Batch operations** - Add multiple members efficiently
-
-### 🌐 Beautiful Web Viewer
-- **Modern, polished design** - Clean and professional interface
-- **Responsive layout** - Works on desktop, tablet, and mobile
-- **Static HTML** - No server required, host anywhere
-- **GitHub Pages ready** - Deploy with one command
-
-### 📝 Comprehensive Templates
-- **Profile template** - Structured format for life stories
-- **Interview guide** - 100+ questions across all life stages
-- **Technical setup** - Recording and equipment guidance
-
-### 💾 Built for Redundancy
-- **Git version control** - Track every change
-- **Git LFS support** - Handle large video files
-- **Multi-remote backup** - Push to multiple locations
-- **Local + cloud** - Best of both worlds
 
 ## Contributing
 
 This is a template project. To use it for your family:
 1. Fork this repository
-2. Follow the quick start guide above
+2. Follow the setup guide in `/docs`
 3. Start preserving your family's story
-
-To contribute to GitFam itself, see [CONTRIBUTING.md](gitfam/docs/CONTRIBUTING.md)
 
 ---
 
 ## License
 
-*To be determined*
+MIT License - see [LICENSE](LICENSE) file for details.
+
+This project is free and open-source. Fork it, customize it, and preserve your family's legacy.
 
 ## A Final Word
 

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}GitFam - Family History{% endblock %}
+
+{% block content %}
+<div class="stats">
+    <div class="stat-card">
+        <span class="stat-number">{{ data.stats.total_members }}</span>
+        <span class="stat-label">Family Members</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-number">{{ data.stats.total_branches }}</span>
+        <span class="stat-label">Family Branches</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-number">{{ data.stats.total_interviews }}</span>
+        <span class="stat-label">Interviews</span>
+    </div>
+</div>
+
+<div class="card">
+    <h2 style="color: #667eea; margin-bottom: 1rem;">Welcome to Our Family History</h2>
+    <p style="font-size: 1.1rem; color: #666;">
+        This digital archive preserves our family's stories, memories, and wisdom for future generations. 
+        Explore the branches of our family tree, discover the lives of our ancestors, and connect with 
+        the rich tapestry of our shared heritage.
+    </p>
+</div>
+
+<h2 style="color: #667eea; margin-bottom: 1.5rem;">Family Branches</h2>
+<div class="branch-grid">
+    {% for branch in data.branches %}
+    <a href="{{ branch.path }}.html" class="card" style="text-decoration: none; color: inherit; cursor: pointer;">
+        <h3 style="color: #667eea; margin-bottom: 0.5rem;">{{ branch.display_name }}</h3>
+        <p style="color: #666; margin-bottom: 1rem;">{{ branch.description or 'Family branch' }}</p>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="color: #999; font-size: 0.9rem;">{{ branch.members|length }} members</span>
+            <span class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Branch →</span>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% if not data.branches %}
+<div class="card" style="text-align: center; padding: 3rem;">
+    <h3 style="color: #999; margin-bottom: 1rem;">No family branches yet</h3>
+    <p style="color: #999;">
+        Start building your family tree by running:<br>
+        <code style="background: #f5f5f5; padding: 0.5rem 1rem; border-radius: 4px; margin-top: 1rem; display: inline-block;">
+            gitfam quick-start
+        </code>
+    </p>
+</div>
+{% endif %}
+
+<div class="card" style="background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border: 2px solid #667eea30; margin-top: 3rem;">
+    <h3 style="color: #667eea; margin-bottom: 1rem;">📖 Our Mission</h3>
+    <p style="color: #666;">
+        <strong>We stand at a unique moment in history.</strong> For the first time, we can preserve not just names 
+        and dates, but the actual voices, faces, and wisdom of our ancestors. This archive ensures that future 
+        generations will know exactly who they come from—their struggles, triumphs, and the values they lived by.
+    </p>
+    <p style="color: #666; margin-top: 1rem;">
+        Every story preserved here is a gift to those who will come after us. Time is precious—let's make sure 
+        no story is lost.
+    </p>
+</div>
+{% endblock %}
